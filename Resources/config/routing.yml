@@ -1,0 +1,3 @@
+kuborgh_auphonic_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: KuborghAuphonicBundle:Default:index }
