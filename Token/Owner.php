@@ -2,6 +2,12 @@
 
 namespace Kuborgh\AuphonicBundle\Token;
 
+/**
+ * Class Owner
+ * Interface to implement on a entity that will store the token related to the API user.
+ *
+ * @package Kuborgh\AuphonicBundle\Token
+ */
 interface Owner
 {
     /**
@@ -14,8 +20,9 @@ interface Owner
 
     /**
      * Set new token.
+     * Throw Excpetion if token is expired or invalid.
      *
-     * @throws
+     * @throws \Exception
      *
      * @param Token $token
      */
