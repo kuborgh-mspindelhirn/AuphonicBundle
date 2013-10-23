@@ -4,7 +4,6 @@ namespace Kuborgh\AuphonicBundle\Client;
 
 use Buzz\Util\Url;
 use Kuborgh\AuphonicBundle\Client;
-use Kuborgh\AuphonicBundle\Resource\Production;
 
 class Production
 {
