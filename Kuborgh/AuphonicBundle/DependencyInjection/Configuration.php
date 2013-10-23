@@ -22,10 +22,9 @@ class Configuration implements ConfigurationInterface
 
         // Username and password must be configured
         $rootNode
-            ->requiresAtLeastOneElement()
             ->children()
-                ->scalarNode('username')->isRequired()->end()
-                ->scalarNode('password')->isRequired()->end()
+                ->scalarNode('username')->cannotBeEmpty()->end()
+                ->scalarNode('password')->cannotBeEmpty()->end()
             ->end();
 
         return $treeBuilder;

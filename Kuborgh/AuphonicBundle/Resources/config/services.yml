@@ -1,9 +1,12 @@
 parameters:
     kuborgh_auphonic.client.class: Kuborgh\AuphonicBundle\Client
     kuborgh_auphonic.client.production.class: Kuborgh\AuphonicBundle\Client\Production
+    kuborgh_auphonic.client.preset.class: Kuborgh\AuphonicBundle\Client\Preset
     kuborgh_auphonic.browser.class: Buzz\Browser
-    kuborgh_auphonic.browser.client.class: Buzz\Client\FileGetContents
+    kuborgh_auphonic.browser.client.class: Buzz\Client\Curl
     kuborgh_auphonic.browser.factory.class: Buzz\Message\Factory\Factory
+    # Resource subsets
+    kuborgh_auphonic.resource.subset.metadata.class: Kuborgh\AuphonicBundle\Resource\Production\Metadata
 
 services:
     kuborgh_auphonic.browser.client:
@@ -18,6 +21,13 @@ services:
         calls:
             - [setBrowser, ["@kuborgh_auphonic.browser"]]
             - [setProduction, ["@kuborgh_auphonic.client.production"]]
+            - [setPreset, ["@kuborgh_auphonic.client.preset"]]
+            - [setUsername, [%kuborgh_auphonic.username%]]
+            - [setPassword, [%kuborgh_auphonic.password%]]
+            # Adds resource subsets
+            - [addResourceSubset, ["metadata", %kuborgh_auphonic.resource.subset.metadata.class%]]
     # The client class will inject the browser dependency into api subset services
     kuborgh_auphonic.client.production:
         class: %kuborgh_auphonic.client.production.class%
+    kuborgh_auphonic.client.preset:
+        class: %kuborgh_auphonic.client.preset.class%

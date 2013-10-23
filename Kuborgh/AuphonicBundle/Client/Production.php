@@ -55,5 +55,15 @@ class Production
         $request = $this->client->createRequest('GET', $url);
 
         $result = $this->client->process($request);
+
+        $productions = array();
+        if($result->data && is_array($result->data)) {
+            foreach($result->data as $production) {
+                $production = new \Kuborgh\AuphonicBundle\Resource\Production();
+                $productions[] = $production;
+            }
+        }
+
+        return $productions;
     }
 }

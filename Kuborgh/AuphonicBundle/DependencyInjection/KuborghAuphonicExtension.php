@@ -22,6 +22,16 @@ class KuborghAuphonicExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
+        // set username on client
+        if(array_key_exists('username', $config)) {
+            $container->setParameter('kuborgh_auphonic.username', $config['username']);
+        }
+
+        // set password
+        if(array_key_exists('password', $config)) {
+            $container->setParameter('kuborgh_auphonic.password', $config['password']);
+        }
+
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
     }

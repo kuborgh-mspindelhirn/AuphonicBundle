@@ -3,8 +3,9 @@
 namespace Kuborgh\AuphonicBundle\Resource\Production;
 
 use Kuborgh\AuphonicBundle\Resource\Production\Metadata\Location;
+use Kuborgh\AuphonicBundle\Resource\ResourceFactory;
 
-class Metadata
+class Metadata implements ResourceFactory
 {
     /**
      * Production title.
@@ -351,5 +352,13 @@ class Metadata
     public function getYear()
     {
         return $this->year;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public static function create()
+    {
+        return new self();
     }
 }
